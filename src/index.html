@@ -4,24 +4,63 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Mocha Spec Runner</title>
-    <link rel="stylesheet" href="bower_components/mocha/mocha.css">
 </head>
 <body>
     <div id="mocha"></div>
-    <script src="bower_components/mocha/mocha.js"></script>
-    <script>mocha.setup('bdd')</script>
-    <script src="bower_components/chai/chai.js"></script>
-    <script>
-        var assert = chai.assert;
-        var expect = chai.expect;
-        var should = chai.should();
-    </script>
+
 
     <!-- include source files here... -->
+    <script src="../src/struct.js"> </script>
+    <script src="../src/dataStructure.js"> </script>
+    <script src="../src/sort.js"> </script>
+    <script> 
 
-    <!-- include spec files here... -->
-    <script src="spec/test.js"></script>
+    /**
+    Sorting experiment 1 - 100,000 numbers between 1 and 100 
+    **/
+    var quickSort = new Array();
+    var otherSort = new Array();
+    var insertionSort = new Array();
+    var countingSort = new Array();
+    for (var i =0; i < 100000; i++) {
+        var randomVal = Math.floor(Math.random()*100);
+        quickSort.push(randomVal);
+        otherSort.push(randomVal);
+        insertionSort.push(randomVal);
+        countingSort.push(randomVal);
+    }
 
-    <script>mocha.run()</script>
+    //quick sort 
+    var start = new Date().getTime();
+    Struct.quickSort(quickSort,0, quickSort.length-1);
+    var end = new Date().getTime();
+    var time = end - start;
+    console.log('Execution time for QuickSort: ' + time);
+    
+    //default java script sort 
+    var start = new Date().getTime();
+    otherSort.sort();
+    var end = new Date().getTime();
+    var time = end - start;
+    console.log('Execution time for default sort: ' + time);
+
+    //counting sort
+    var start = new Date().getTime();
+    Struct.countingSort(countingSort,100);
+    var end = new Date().getTime();
+    var time = end - start;
+    console.log('Execution time for counting sort: ' + time);
+
+    //insertion sort
+    var start = new Date().getTime();
+    Struct.insertionSort(insertionSort);
+    var end = new Date().getTime();
+    var time = end - start;
+    console.log('Execution time for insertion sort: ' + time);
+    
+    </script>
+
+
+
 </body>
 </html>
